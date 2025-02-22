@@ -196,13 +196,7 @@ async def predict(request: Request):
         # Get predictions
         prediction = predictor.predict(total_height, weight)
         
-        # Add model confidence metrics
-        response = {
-            "predictions": prediction,
-            "model_metrics": predictor.model_metrics
-        }
-        
-        return json(response)
+        return json({"predictions": prediction})
         
     except ValueError as ve:
         return json({"error": f"Invalid input: {str(ve)}"}, status=400)
@@ -248,8 +242,7 @@ async def predict_important(request: Request):
                 "RecommendedSize": recommended_size,
                 "SizeDetails": size_details,
                 "Fit": computed_fit,
-                "PredictedMeasurements": prediction,
-                "ModelConfidence": predictor.model_metrics
+                "PredictedMeasurements": prediction
             }
             
             return json(response)
@@ -263,4 +256,3 @@ async def predict_important(request: Request):
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000)
-    
