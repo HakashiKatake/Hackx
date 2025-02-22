@@ -7,6 +7,7 @@ import SplashCursor from '@/animations/SplashCursor/SplashCursor';
 import AboutSection from '@/components/AboutSection';
 import FAQSection from '@/components/FAQSection';
 import TryOnARSection from '@/components/TryOnARSection';
+import RollingGallery from '@/components/RollingGallery/RollingGallery';
 
 
 export default function LandingPage() {
@@ -17,10 +18,12 @@ export default function LandingPage() {
         title1="Elevate Your" 
         title2="Fashion Sense" 
       />
+     
       <CheckClothes3DSection />
+      
       <TryOnARSection />
       <FeaturesSection />
-      
+      <RollingGallery />
      
       <AboutSection />
       <FAQSection />
