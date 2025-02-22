@@ -1,7 +1,7 @@
 // src/app/page.tsx
 'use client';
 
-import React from 'react';
+import React, { JSX } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
