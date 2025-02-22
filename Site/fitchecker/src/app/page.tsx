@@ -77,15 +77,10 @@ function ElegantShape({
   )
 }
 
-export default function HeroGeometric({
-  badge = "",
-  title1 = "Elevate Your",
-  title2 = "Digital Vision",
-}: {
-  badge?: string
-  title1?: string
-  title2?: string
-}) {
+export default function HeroGeometric() {
+  const badge = "";
+  const title1 = "Elevate Your";
+  const title2 = "Digital Vision";
   const fadeUpVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i: number) => ({
