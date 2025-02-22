@@ -53,8 +53,17 @@ def convert_to_cm(example):
     return example
 
 def add_weight_height(example):
-    res = predict_weight_size(example["Age"], example["TotalHeight"])
-    example["Weight"], example["Size"] = res
+    res = list(predict_weight_size(example["Age"], example["TotalHeight"]))
+    example["Size"] = res[1]
+    if(res[1] == "XXS" or res[1] == "XS"):
+        res[1] = "Slim"
+    elif(res[1] == "S" or res[1] == "M"):
+        res[1] = "Regular"
+    else:
+        res[1] = "Loose"
+
+    example["Weight"] = res[0]
+    example["Fit"] = res[1]
     return example
 
 # Apply transformations
