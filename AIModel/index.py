@@ -22,7 +22,7 @@ from datetime import datetime
 # Constants
 CURRENT_TIME = "2025-02-22 21:39:09"
 CURRENT_USER = "RohanVashisht1234"
-CSV_PATH = '/Users/rohanvashisht/Hackx/datasetPrepairation/processedDatasets/bdm.csv'
+CSV_PATH = 'bdm.csv'
 SHIRT_SIZE_CHARTS_PATH = 'shirt_size_charts.json'
 PANTS_SIZE_CHARTS_PATH = 'pants_size_charts.json'
 
