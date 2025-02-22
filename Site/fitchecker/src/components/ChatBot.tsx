@@ -77,11 +77,11 @@ export default function Chatbot() {
 
       setMessages(prev => [...prev, botMessage]);
 
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error:', error);
       const errorMessage: Message = {
         sender: 'bot',
-        text: `Sorry, I encountered an error: ${error.message}`,
+        text: `Sorry, I encountered an error: ${(error as Error).message}`,
         timestamp: new Date().toISOString(),
         error: true
       };
