@@ -7,7 +7,7 @@ interface GridMotionProps {
 }
 
 const GridMotion: FC<GridMotionProps> = ({
-  items = ["/test.png"],
+  items = [],
   gradientColor = "black",
 }) => {
   const gridRef = useRef<HTMLDivElement>(null);

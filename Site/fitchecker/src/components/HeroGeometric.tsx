@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { Pacifico } from "next/font/google"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 const pacifico = Pacifico({
   subsets: ["latin"],
@@ -78,9 +79,9 @@ function ElegantShape({
 }
 
 export default function HeroGeometric({
-  badge = "Null",
+  badge = "Kokonut UI",
   title1 = "Elevate Your",
-  title2 = "Fashion Sense",
+  title2 = "Digital Vision",
 }: {
   badge?: string
   title1?: string
@@ -97,6 +98,11 @@ export default function HeroGeometric({
         ease: [0.25, 0.4, 0.25, 1],
       },
     }),
+  }
+
+  const handleCheckClothes = () => {
+    // We'll implement this later
+    
   }
 
   return (
@@ -159,7 +165,7 @@ export default function HeroGeometric({
             animate="visible"
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-8 md:mb-12"
           >
-            <Image src="https://kokonutui.com/logo.svg" alt="Kokonut UI" width={20} height={20} />
+            <Image src="/favicon.ico" alt="Kokonut UI" width={60} height={60} />
             <span className="text-sm text-white/60 tracking-wide">{badge}</span>
           </motion.div>
 
@@ -183,14 +189,19 @@ export default function HeroGeometric({
               Crafting exceptional digital experiences through innovative design and cutting-edge technology.
             </p>
           </motion.div>
+          <motion.div custom={3} variants={fadeUpVariants} initial="hidden" animate="visible">
+            <Button
+              onClick={handleCheckClothes}
+              className="bg-white/10 text-white hover:bg-white/20 transition-colors duration-300"
+            >
+              Start Your Journey!
+            </Button>
+          </motion.div>
         </div>
       </div>
 
       <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-[#030303]/80 pointer-events-none" />
     </div>
-
-    
   )
-  
 }
 
