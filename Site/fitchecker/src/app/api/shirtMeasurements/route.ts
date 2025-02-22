@@ -18,7 +18,7 @@ export async function GET(request: Request) {
 		const result = await client.predict("/predict_shirt_measurements", [height, weight, body_type]);
 
 		return NextResponse.json(result);
-	} catch (error) {
+	} catch  {
 		return NextResponse.json(
 			{ error: "Failed to process request" },
 			{ status: 500 }

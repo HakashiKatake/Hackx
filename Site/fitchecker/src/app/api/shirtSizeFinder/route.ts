@@ -38,7 +38,7 @@ export async function GET(request: Request) {
       timestamp,
       userLogin
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Failed to process request" },
       { status: 500 }

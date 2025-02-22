@@ -6,7 +6,6 @@ import HeroGeometric from '@/components/HeroGeometric';
 import FeaturesSection from '@/components/FeaturesSection';
 import CheckClothes3DSection from '@/components/CheckClothes3DSection';
 import GridMotion from '@/background/GridMotion/GridMotion';
-import SplashCursor from '@/animations/SplashCursor/SplashCursor';
 import AboutSection from '@/components/AboutSection';
 import FAQSection from '@/components/FAQSection';
 import TryOnARSection from '@/components/TryOnARSection';
