@@ -1,0 +1,89 @@
+[
+    {
+      "brand": "Zara",
+      "sizes": [
+        {
+          "label": "S",
+          "waist": [72, 76],
+          "hips": [90, 94],
+          "leg_length": [98, 100]
+        },
+        {
+          "label": "M",
+          "waist": [77, 81],
+          "hips": [95, 99],
+          "leg_length": [100, 102]
+        },
+        {
+          "label": "L",
+          "waist": [82, 86],
+          "hips": [100, 104],
+          "leg_length": [102, 104]
+        },
+        {
+          "label": "XL",
+          "waist": [87, 91],
+          "hips": [105, 109],
+          "leg_length": [104, 106]
+        }
+      ]
+    },
+    {
+      "brand": "H&M",
+      "sizes": [
+        {
+          "label": "S",
+          "waist": [73, 77],
+          "hips": [91, 95],
+          "leg_length": [97, 99]
+        },
+        {
+          "label": "M",
+          "waist": [78, 82],
+          "hips": [96, 100],
+          "leg_length": [99, 101]
+        },
+        {
+          "label": "L",
+          "waist": [83, 87],
+          "hips": [101, 105],
+          "leg_length": [101, 103]
+        },
+        {
+          "label": "XL",
+          "waist": [88, 92],
+          "hips": [106, 110],
+          "leg_length": [103, 105]
+        }
+      ]
+    },
+    {
+      "brand": "Dior",
+      "sizes": [
+        {
+          "label": "S",
+          "waist": [71, 75],
+          "hips": [89, 93],
+          "leg_length": [98, 100]
+        },
+        {
+          "label": "M",
+          "waist": [76, 80],
+          "hips": [94, 98],
+          "leg_length": [100, 102]
+        },
+        {
+          "label": "L",
+          "waist": [81, 85],
+          "hips": [99, 103],
+          "leg_length": [102, 104]
+        },
+        {
+          "label": "XL",
+          "waist": [86, 90],
+          "hips": [104, 108],
+          "leg_length": [104, 106]
+        }
+      ]
+    }
+  ]
