@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 import React, { JSX } from "react";
 
 // A simple feature card component

@@ -5,7 +5,6 @@ import React, { JSX, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
-import { motion } from 'framer-motion';
 
 function ClothModel(props: JSX.IntrinsicElements['group']) {
   // Ensure that your model and its textures are in public/Cloth/
