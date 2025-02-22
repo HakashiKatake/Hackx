@@ -17,7 +17,7 @@ export default function ARPreviewPage() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="text-4xl md:text-5xl font-bold mb-6 text-center"
         >
-          Check the Clothes in 3D!
+         
         </motion.h2>
         <div className="flex flex-col md:flex-row gap-8 w-full">
           {/* Before Video Container */}
@@ -80,7 +80,7 @@ export default function ARPreviewPage() {
             transition={{ duration: 0.5 }}
           >
             <video
-              src="/before-mobile.mp4"
+              src="/bmobile.mp4"
               autoPlay
               loop
               muted
@@ -99,7 +99,7 @@ export default function ARPreviewPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <video
-              src="/after-mobile.mp4"
+              src="/amobile.mp4"
               autoPlay
               loop
               muted
