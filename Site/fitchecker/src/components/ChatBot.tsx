@@ -1,4 +1,3 @@
-// src/components/Chatbot.tsx
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
@@ -35,11 +34,43 @@ export default function Chatbot() {
     });
   };
 
+  // List of keywords that indicate a question is cloth/measurement related
+  const allowedKeywords = [
+    "cloth",
+    "clothing",
+    "measurement",
+    "size",
+    "fit",
+    "fabric",
+    "material",
+    "shoulder",
+    "chest",
+    "waist",
+  ];
+
+  const isQueryRelevant = (query: string) => {
+    const lowerQuery = query.toLowerCase();
+    return allowedKeywords.some(keyword => lowerQuery.includes(keyword));
+  };
+
   const sendMessage = async () => {
     if (input.trim() === '' || isLoading) return;
 
     const currentTimestamp = new Date().toISOString();
     setIsLoading(true);
+
+    // Check if the query is relevant
+    if (!isQueryRelevant(input)) {
+      const irrelevantMessage: Message = {
+        sender: 'bot',
+        text: "I'm sorry, I can only answer questions related to clothing and measurements. Please ask me something related to that.",
+        timestamp: new Date().toISOString(),
+      };
+      setMessages(prev => [...prev, { sender: 'user', text: input, timestamp: currentTimestamp }, irrelevantMessage]);
+      setInput('');
+      setIsLoading(false);
+      return;
+    }
 
     const userMessage: Message = {
       sender: 'user',
