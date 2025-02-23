@@ -9,6 +9,7 @@ export type GalleryItem = {
   icon: React.ReactNode;
   title: string;
   desc: string;
+  image?: string; // Optional image property
 };
 
 export type CircularGalleryProps = {
@@ -140,15 +141,18 @@ const SliderContent = (props: GalleryItem) => {
           '"Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif',
       }}
     >
+      {props.image && (
+        <img
+          src={props.image}
+          alt={props.title}
+          className="mb-4 w-full h-auto rounded"
+        />
+      )}
       {props.icon}
       <h2 className="my-4">{props.title}</h2>
       <p className="mb-4">{props.desc}</p>
     </div>
   );
 };
-
-
-
-
 
 export default CircularGallery;

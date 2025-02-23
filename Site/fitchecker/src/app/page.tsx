@@ -1,4 +1,3 @@
-// src/app/landing/page.tsx
 'use client';
 
 import React from 'react';
@@ -8,55 +7,51 @@ import TryOnARSection from '@/components/TryOnARSection';
 import FeaturesSection from '@/components/FeaturesSection';
 import AboutSection from '@/components/AboutSection';
 import FAQSection from '@/components/FAQSection';
-import CircularGallery from '@/components/CircularGallery/CircularGallery';
+import CircularGallery, { GalleryItem } from '@/components/CircularGallery/CircularGallery';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
-// Define the gallery item type expected by CircularGallery
-export type GalleryItem = {
-  id: number;
-  bgColor: string;
-  icon: React.ReactNode;
-  title: string;
-  desc: string;
-};
-
-// Sample data for the gallery
+// Sample data for the gallery with an image property added.
 const galleryData: GalleryItem[] = [
   {
     id: 1,
     bgColor: "#F54748",
     icon: <span role="img" aria-label="camera">📷</span>,
     title: "Item 1",
-    desc: "",
+    desc: "Lorem Ipsum is simply dummy text.",
+    image: "/img2.jpeg",
   },
   {
     id: 2,
     bgColor: "#7952B3",
     icon: <span role="img" aria-label="cocktail">🍹</span>,
     title: "Item 2",
-    desc: "",
+    desc: "Lorem Ipsum has been the industry's standard dummy text.",
+    image: "/img3.jpeg",
   },
   {
     id: 3,
     bgColor: "#1597BB",
     icon: <span role="img" aria-label="dragon">🐉</span>,
     title: "Item 3",
-    desc: "",
+    desc: "Lorem Ipsum is simply dummy text.",
+    image: "/img1.jpeg",
   },
   {
     id: 4,
     bgColor: "#185ADB",
     icon: <span role="img" aria-label="soccer">⚽</span>,
     title: "Item 4",
-    desc: "",
+    desc: "Lorem Ipsum has been the industry's standard dummy text.",
+    image: "/img4.jpeg",
   },
   {
     id: 5,
     bgColor: "#FF616D",
     icon: <span role="img" aria-label="helicopter">🚁</span>,
     title: "Item 5",
-    desc: "",
+    desc: "Lorem Ipsum is simply dummy text.",
+    image: "/img5.jpeg",
   },
 ];
 
@@ -68,6 +63,8 @@ export default function LandingPage() {
         title1="Elevate Your" 
         title2="Fashion Sense" 
       />
+      
+      {/* Gallery Section with updated data */}
       <section className="py-20 bg-[#030303] text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.h2
@@ -83,13 +80,13 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
       <CheckClothes3DSection />
       <TryOnARSection />
       <FeaturesSection />
       <AboutSection />
       <FAQSection />
 
-      
       
     </>
   );
