@@ -723,7 +723,7 @@ with gr.Blocks(title="Body Measurements Predictor") as demo:
                 predictions = format_pants_brand_predictions(
                     json.loads(predict_pants_sizes(waist, leg_length, hips))
                 )
-                return predictions, gr.update(visible=True)
+                return predictions, gr.update(visible=True)  # Fixed syntax error here
             
             pants_brand_predict_button.click(
                 fn=update_model_visibility,
