@@ -11,7 +11,7 @@ export default function LandingPage() {
   return (
     <>
       <HeroGeometric 
-        badge="Featured" 
+        badge="sARgg" 
         title1="Elevate Your" 
         title2="Fashion Sense" 
       />
@@ -26,7 +26,7 @@ export default function LandingPage() {
         <Link href="/help" legacyBehavior>
           <a className="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center shadow-lg cursor-pointer transform transition hover:scale-110">
             <span className="text-white text-xs md:text-sm font-bold text-center">
-              Chat with AI
+              Chat with Swag AI
             </span>
           </a>
         </Link>

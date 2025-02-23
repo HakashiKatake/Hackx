@@ -1,15 +1,17 @@
-"use client"
+'use client'
 
-import { motion } from "framer-motion"
-import { Pacifico } from "next/font/google"
-import Image from "next/image"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { useRouter } from 'next/navigation'
+import React from 'react'
+import { motion } from 'framer-motion'
+import { Pacifico } from 'next/font/google'
+import Image from 'next/image'
+import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 
 const pacifico = Pacifico({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-pacifico",
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-pacifico',
 })
 
 function ElegantShape({
@@ -18,7 +20,7 @@ function ElegantShape({
   width = 400,
   height = 100,
   rotate = 0,
-  gradient = "from-white/[0.08]",
+  gradient = 'from-white/[0.08]',
 }: {
   className?: string
   delay?: number
@@ -45,7 +47,7 @@ function ElegantShape({
         ease: [0.23, 0.86, 0.39, 0.96],
         opacity: { duration: 1.2 },
       }}
-      className={cn("absolute", className)}
+      className={cn('absolute', className)}
     >
       <motion.div
         animate={{
@@ -54,7 +56,7 @@ function ElegantShape({
         transition={{
           duration: 12,
           repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
+          ease: 'easeInOut',
         }}
         style={{
           width,
@@ -64,13 +66,13 @@ function ElegantShape({
       >
         <div
           className={cn(
-            "absolute inset-0 rounded-full",
-            "bg-gradient-to-r to-transparent",
+            'absolute inset-0 rounded-full',
+            'bg-gradient-to-r to-transparent',
             gradient,
-            "backdrop-blur-[2px] border-2 border-white/[0.15]",
-            "shadow-[0_8px_32px_0_rgba(255,255,255,0.1)]",
-            "after:absolute after:inset-0 after:rounded-full",
-            "after:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_70%)]",
+            'backdrop-blur-[2px] border-2 border-white/[0.15]',
+            'shadow-[0_8px_32px_0_rgba(255,255,255,0.1)]',
+            'after:absolute after:inset-0 after:rounded-full',
+            'after:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_70%)]'
           )}
         />
       </motion.div>
@@ -79,14 +81,16 @@ function ElegantShape({
 }
 
 export default function HeroGeometric({
-  badge = "Kokonut UI",
-  title1 = "Elevate Your",
-  title2 = "Digital Vision",
+  badge = 'Kokonut UI',
+  title1 = 'Elevate Your',
+  title2 = 'Digital Vision',
 }: {
   badge?: string
   title1?: string
   title2?: string
 }) {
+  const router = useRouter()
+
   const fadeUpVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i: number) => ({
@@ -101,8 +105,8 @@ export default function HeroGeometric({
   }
 
   const handleCheckClothes = () => {
-    // We'll implement this later
-    
+    // Redirect to the /results route when the button is clicked
+    router.push('/results')
   }
 
   return (
@@ -171,12 +175,14 @@ export default function HeroGeometric({
 
           <motion.div custom={1} variants={fadeUpVariants} initial="hidden" animate="visible">
             <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-6 md:mb-8 tracking-tight">
-              <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80">{title1}</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80">
+                {title1}
+              </span>
               <br />
               <span
                 className={cn(
-                  "bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-white/90 to-rose-300 ",
-                  pacifico.className,
+                  'bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-white/90 to-rose-300 ',
+                  pacifico.className
                 )}
               >
                 {title2}
@@ -204,4 +210,3 @@ export default function HeroGeometric({
     </div>
   )
 }
-
