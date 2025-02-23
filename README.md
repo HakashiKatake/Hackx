@@ -45,13 +45,6 @@ Once the server is running, open [http://localhost:3000](http://localhost:3000) 
 
 Feel free to dive into the code and start tinkering! You can begin by modifying `app/page.tsx` – the page auto-updates as you make changes, making development a breeze.
 
-### ⚓ Learn More About Next.js
-
-Want to deepen your knowledge of Next.js? Here are some valuable resources:
-
-*   [Next.js Documentation](https://nextjs.org/docs) -  The official documentation, covering everything from features to API references.
-*   [Learn Next.js](https://nextjs.org/learn) - An interactive tutorial to guide you through the fundamentals of Next.js.
-*   [Next.js GitHub Repository](https://github.com/vercel/next.js) - Explore the source code, contribute, and provide feedback!
 
 ### ☁️ Deploy to Vercel
 

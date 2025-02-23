@@ -304,7 +304,7 @@ class PantsPredictor:
         return predictions
 
 class PantsSizePredictor:
-    def __init__(self, size_charts_path='/Users/rohanvashisht/Hackx/pants_size_charts.json'):
+    def __init__(self, size_charts_path=PANTS_SIZE_CHARTS_PATH):
         try:
             with open(size_charts_path, 'r') as f:
                 self.brand_charts = json.load(f)
@@ -544,13 +544,24 @@ with gr.Blocks(title="Body Measurements Predictor") as demo:
                 
                 with gr.Column():
                     output_markdown = gr.Markdown(label="Shirt Measurements Predictions")
+                with gr.Column(scale=2, min_width=300):
+                    model3d = gr.Model3D(
+                        value="jacket.glb",  # Path to your .glb file on server
+                        clear_color=[0.0, 0.0, 0.0, 0.0],  # Transparent background
+                        camera_position=[0, 0, 5],  # Initial camera position
+                        visible=False  # Initially hidden
+                    )
+            
+            def update_model_visibility(height, weight, body_type):
+                predictions = format_shirt_predictions(
+                    json.loads(predict_shirt_measurements(height, weight, body_type))
+                )
+                return predictions, gr.update(visible=True)
             
             predict_button.click(
-                fn=lambda height, weight, body_type: format_shirt_predictions(
-                    json.loads(predict_shirt_measurements(height, weight, body_type))
-                ),
+                fn=update_model_visibility,
                 inputs=[height_input, weight_input, body_type_input],
-                outputs=output_markdown
+                outputs=[output_markdown, model3d]
             )
             
             gr.Markdown("""
@@ -589,13 +600,24 @@ with gr.Blocks(title="Body Measurements Predictor") as demo:
                 
                 with gr.Column():
                     brand_output_markdown = gr.Markdown(label="Brand Size Recommendations")
+                with gr.Column(scale=2, min_width=300):
+                    model3d = gr.Model3D(
+                        value="jacket.glb",  # Path to your .glb file on server
+                        clear_color=[0.0, 0.0, 0.0, 0.0],  # Transparent background
+                        camera_position=[0, 0, 5],  # Initial camera position
+                        visible=False  # Initially hidden
+                    )
+            
+            def update_model_visibility(chest, waist, shoulder):
+                predictions = format_brand_predictions(
+                    json.loads(predict_brand_sizes(chest, waist, shoulder))
+                )
+                return predictions, gr.update(visible=True)
             
             brand_predict_button.click(
-                fn=lambda chest, waist, shoulder: format_brand_predictions(
-                    json.loads(predict_brand_sizes(chest, waist, shoulder))
-                ),
+                fn=update_model_visibility,
                 inputs=[chest_input, waist_input, shoulder_input],
-                outputs=brand_output_markdown
+                outputs=[brand_output_markdown, model3d]
             )
             
             gr.Markdown("""
@@ -633,13 +655,24 @@ with gr.Blocks(title="Body Measurements Predictor") as demo:
                 
                 with gr.Column():
                     pants_output_markdown = gr.Markdown(label="Pants Measurements Predictions")
+                with gr.Column():
+                    model3d = gr.Model3D(
+                        value="pants.glb",  # Path to your .glb file on server
+                        clear_color=[0.0, 0.0, 0.0, 0.0],  # Transparent background
+                        camera_position=[0, 0, 5],  # Initial camera position
+                        visible=False  # Initially hidden
+                    )
+            
+            def update_model_visibility(height, weight, body_type):
+                predictions = format_pants_predictions(
+                    json.loads(predict_pants_measurements(height, weight, body_type))
+                )
+                return predictions, gr.update(visible=True)
             
             pants_predict_button.click(
-                fn=lambda height, weight, body_type: format_pants_predictions(
-                    json.loads(predict_pants_measurements(height, weight, body_type))
-                ),
+                fn=update_model_visibility,
                 inputs=[pants_height_input, pants_weight_input, pants_body_type_input],
-                outputs=pants_output_markdown
+                outputs=[pants_output_markdown, model3d]
             )
             
             gr.Markdown("""
@@ -678,13 +711,24 @@ with gr.Blocks(title="Body Measurements Predictor") as demo:
                 
                 with gr.Column():
                     pants_brand_output_markdown = gr.Markdown(label="Pants Size Recommendations")
+                with gr.Column():
+                    model3d = gr.Model3D(
+                        value="pants.glb",  # Path to your .glb file on server
+                        clear_color=[0.0, 0.0, 0.0, 0.0],  # Transparent background
+                        camera_position=[0, 0, 5],  # Initial camera position
+                        visible=False  # Initially hidden
+                    )
+            
+            def update_model_visibility(waist, leg_length, hips):
+                predictions = format_pants_brand_predictions(
+                    json.loads(predict_pants_sizes(waist, leg_length, hips))
+                )
+                return predictions, gr.update(visible=True)  # Fixed syntax error here
             
             pants_brand_predict_button.click(
-                fn=lambda waist, leg_length, hips: format_pants_brand_predictions(
-                    json.loads(predict_pants_sizes(waist, leg_length, hips))
-                ),
+                fn=update_model_visibility,
                 inputs=[pants_waist_input, pants_leg_input, pants_hips_input],
-                outputs=pants_brand_output_markdown
+                outputs=[pants_brand_output_markdown, model3d]
             )
             
             gr.Markdown("""
