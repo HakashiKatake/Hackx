@@ -147,4 +147,8 @@ const SliderContent = (props: GalleryItem) => {
   );
 };
 
+
+
+
+
 export default CircularGallery;
