@@ -1,7 +1,5 @@
 // src/components/CircularGallery/CircularGallery.tsx
-import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import React, { useState, useEffect } from "react";
 
 export type GalleryItem = {
   id: number;
@@ -21,13 +19,13 @@ const CircularGallery = (props: CircularGalleryProps) => {
   const { data, activeSlide: initialSlide = 0 } = props;
   const [activeSlide, setActiveSlide] = useState<number>(initialSlide);
 
-  const next = () => {
-    if (activeSlide < data.length - 1) setActiveSlide(activeSlide + 1);
-  };
-
-  const prev = () => {
-    if (activeSlide > 0) setActiveSlide(activeSlide - 1);
-  };
+  // Auto slide: change slide every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveSlide((prev) => (prev < data.length - 1 ? prev + 1 : 0));
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [data.length]);
 
   const getStyles = (index: number) => {
     if (activeSlide === index)
@@ -110,23 +108,6 @@ const CircularGallery = (props: CircularGalleryProps) => {
             />
           </React.Fragment>
         ))}
-      </div>
-      {/* Navigation Buttons */}
-      <div className="pt-[100px] flex justify-center">
-        <FontAwesomeIcon
-          className="cursor-pointer"
-          onClick={prev}
-          icon={faChevronLeft}
-          color="#fff"
-          size="2x"
-        />
-        <FontAwesomeIcon
-          className="cursor-pointer ml-[40px]"
-          onClick={next}
-          icon={faChevronRight}
-          color="#fff"
-          size="2x"
-        />
       </div>
     </>
   );
