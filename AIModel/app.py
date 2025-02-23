@@ -304,7 +304,7 @@ class PantsPredictor:
         return predictions
 
 class PantsSizePredictor:
-    def __init__(self, size_charts_path='/Users/rohanvashisht/Hackx/pants_size_charts.json'):
+    def __init__(self, size_charts_path=PANTS_SIZE_CHARTS_PATH):
         try:
             with open(size_charts_path, 'r') as f:
                 self.brand_charts = json.load(f)
