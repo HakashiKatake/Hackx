@@ -8,8 +8,8 @@ import DockWrapper from "@/components/DockWrapper"; // New client component
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "My App",
-  description: "My app description",
+  title: "Swaggar",
+  description: "Elevate your fashion sense with Swaggar",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

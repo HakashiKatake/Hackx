@@ -169,7 +169,7 @@ export default function HeroGeometric({
             animate="visible"
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-8 md:mb-12"
           >
-            <Image src="/favicon.ico" alt="Kokonut UI" width={60} height={60} />
+            <Image src="/favicon.ico" alt="Kokonut UI" width={90} height={90} />
             <span className="text-sm text-white/60 tracking-wide">{badge}</span>
           </motion.div>
 
