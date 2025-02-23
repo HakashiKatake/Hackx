@@ -455,7 +455,61 @@ def predict_pants_sizes(waist, leg_length, hips):
         }, indent=2)
 
 
-# Create Gradio interface with tabs
+def format_shirt_predictions(predictions):
+    formatted = "### Shirt Measurements Predictions\n"
+    formatted += f"**Height:** {predictions['input']['height']} cm\n"
+    if 'weight' in predictions['input']:
+        formatted += f"**Weight:** {predictions['input']['weight']} kg\n"
+    if 'body_type' in predictions['input']:
+        formatted += f"**Body Type:** {predictions['input']['body_type']}\n"
+    formatted += "\n**Predictions:**\n"
+    for key, value in predictions['shirt_predictions'].items():
+        formatted += f"- **{key}:** {value['value']} {value.get('unit', '')}\n"
+    return formatted
+
+def format_brand_predictions(predictions):
+    formatted = "### Brand Size Recommendations\n"
+    formatted += f"**Chest:** {predictions['input_measurements']['chest']} cm\n"
+    formatted += f"**Waist:** {predictions['input_measurements']['waist']} cm\n"
+    formatted += f"**Shoulder:** {predictions['input_measurements']['shoulder']} cm\n"
+    formatted += "\n**Recommendations:**\n"
+    for brand in predictions['brand_recommendations']:
+        formatted += f"- **Brand:** {brand['brand']}\n"
+        for size in brand['matching_sizes']:
+            formatted += f"  - **Size:** {size['size']}\n"
+            formatted += f"    - **Chest Range:** {size['fit_details']['chest_range']}\n"
+            formatted += f"    - **Waist Range:** {size['fit_details']['waist_range']}\n"
+            formatted += f"    - **Shoulder Range:** {size['fit_details']['shoulder_range']}\n"
+    return formatted
+
+def format_pants_predictions(predictions):
+    formatted = "### Pants Measurements Predictions\n"
+    formatted += f"**Height:** {predictions['input']['height']} cm\n"
+    if 'weight' in predictions['input']:
+        formatted += f"**Weight:** {predictions['input']['weight']} kg\n"
+    if 'body_type' in predictions['input']:
+        formatted += f"**Body Type:** {predictions['input']['body_type']}\n"
+    formatted += "\n**Predictions:**\n"
+    for key, value in predictions['pants_predictions'].items():
+        formatted += f"- **{key}:** {value['value']} {value.get('unit', '')}\n"
+    return formatted
+
+def format_pants_brand_predictions(predictions):
+    formatted = "### Pants Size Recommendations\n"
+    formatted += f"**Waist:** {predictions['input_measurements']['waist']} cm\n"
+    formatted += f"**Hips:** {predictions['input_measurements']['hips']} cm\n"
+    formatted += f"**Leg Length:** {predictions['input_measurements']['leg_length']} cm\n"
+    formatted += "\n**Recommendations:**\n"
+    for brand in predictions['brand_recommendations']:
+        formatted += f"- **Brand:** {brand['brand']}\n"
+        for size in brand['matching_sizes']:
+            formatted += f"  - **Size:** {size['size']}\n"
+            formatted += f"    - **Waist Range:** {size['fit_details']['waist_range']}\n"
+            formatted += f"    - **Hips Range:** {size['fit_details']['hips_range']}\n"
+            formatted += f"    - **Leg Length Range:** {size['fit_details']['leg_length_range']}\n"
+    return formatted
+
+# Update Gradio interface to use formatted predictions
 with gr.Blocks(title="Body Measurements Predictor") as demo:
     gr.Markdown(f"""
     # Body Measurements Predictor
@@ -489,12 +543,14 @@ with gr.Blocks(title="Body Measurements Predictor") as demo:
                     predict_button = gr.Button("Predict Shirt Measurements")
                 
                 with gr.Column():
-                    output_json = gr.JSON(label="Shirt Measurements Predictions")
+                    output_markdown = gr.Markdown(label="Shirt Measurements Predictions")
             
             predict_button.click(
-                fn=predict_shirt_measurements,
+                fn=lambda height, weight, body_type: format_shirt_predictions(
+                    json.loads(predict_shirt_measurements(height, weight, body_type))
+                ),
                 inputs=[height_input, weight_input, body_type_input],
-                outputs=output_json
+                outputs=output_markdown
             )
             
             gr.Markdown("""
@@ -532,12 +588,14 @@ with gr.Blocks(title="Body Measurements Predictor") as demo:
                     brand_predict_button = gr.Button("Find Matching Sizes")
                 
                 with gr.Column():
-                    brand_output_json = gr.JSON(label="Brand Size Recommendations")
+                    brand_output_markdown = gr.Markdown(label="Brand Size Recommendations")
             
             brand_predict_button.click(
-                fn=predict_brand_sizes,
+                fn=lambda chest, waist, shoulder: format_brand_predictions(
+                    json.loads(predict_brand_sizes(chest, waist, shoulder))
+                ),
                 inputs=[chest_input, waist_input, shoulder_input],
-                outputs=brand_output_json
+                outputs=brand_output_markdown
             )
             
             gr.Markdown("""
@@ -574,12 +632,14 @@ with gr.Blocks(title="Body Measurements Predictor") as demo:
                     pants_predict_button = gr.Button("Predict Pants Measurements")
                 
                 with gr.Column():
-                    pants_output_json = gr.JSON(label="Pants Measurements Predictions")
+                    pants_output_markdown = gr.Markdown(label="Pants Measurements Predictions")
             
             pants_predict_button.click(
-                fn=predict_pants_measurements,
+                fn=lambda height, weight, body_type: format_pants_predictions(
+                    json.loads(predict_pants_measurements(height, weight, body_type))
+                ),
                 inputs=[pants_height_input, pants_weight_input, pants_body_type_input],
-                outputs=pants_output_json
+                outputs=pants_output_markdown
             )
             
             gr.Markdown("""
@@ -617,12 +677,14 @@ with gr.Blocks(title="Body Measurements Predictor") as demo:
                     pants_brand_predict_button = gr.Button("Find Matching Pants Sizes")
                 
                 with gr.Column():
-                    pants_brand_output_json = gr.JSON(label="Pants Size Recommendations")
+                    pants_brand_output_markdown = gr.Markdown(label="Pants Size Recommendations")
             
             pants_brand_predict_button.click(
-                fn=predict_pants_sizes,
+                fn=lambda waist, leg_length, hips: format_pants_brand_predictions(
+                    json.loads(predict_pants_sizes(waist, leg_length, hips))
+                ),
                 inputs=[pants_waist_input, pants_leg_input, pants_hips_input],
-                outputs=pants_brand_output_json
+                outputs=pants_brand_output_markdown
             )
             
             gr.Markdown("""
