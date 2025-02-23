@@ -3,12 +3,44 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Script from 'next/script';
 
 export default function ARPreviewPage() {
   return (
     <div className="min-h-screen bg-[#030303] text-white flex flex-col items-center justify-center p-4 space-y-16">
       <h1 className="text-4xl md:text-5xl font-bold mb-8">AR Preview</h1>
-      
+
+      {/* Snapchat AR Embed */}
+      <section className="w-full flex justify-center">
+        <div
+          className="max-w-lg"
+          dangerouslySetInnerHTML={{
+            __html: `
+            <blockquote class="snapchat-embed" 
+              data-snapchat-embed-width="416" 
+              data-snapchat-embed-height="692" 
+              data-snapchat-embed-url="https://www.snapchat.com/lens/ab38b33451db4e2292e1da24a2308574/embed" 
+              data-snapchat-embed-style="border-radius: 40px;" 
+              data-snapchat-embed-title="Virtual Sweatshirt Lens" 
+              style="background:#C4C4C4; border:0; border-radius:40px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:416px; min-width:326px; padding:0; width:calc(100% - 2px); display: flex; flex-direction: column; position: relative; height:650px;">
+              <div style="display: flex; flex-direction: row; align-items: center;">
+                <a title="Virtual Sweatshirt Lens" href="https://www.snapchat.com/lens/ab38b33451db4e2292e1da24a2308574" style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; width: 40px; margin:16px; cursor: pointer"></a>
+                <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"></div>
+              </div>
+              <div style="flex: 1;"></div>
+              <div style="display: flex; flex-direction: row; align-items: center; border-end-end-radius: 40px; border-end-start-radius: 40px;">
+                <a title="Virtual Sweatshirt Lens" href="https://www.snapchat.com/lens/ab38b33451db4e2292e1da24a2308574" style="background-color: yellow; width:100%; padding: 10px 20px; border: none; border-radius: inherit; cursor: pointer; text-align: center; display: flex; flex-direction: row; justify-content: center; text-decoration: none; color: black;">
+                  View more on Snapchat
+                </a>
+              </div>
+            </blockquote>
+            `,
+          }}
+        />
+      </section>
+      <Script src="https://www.snapchat.com/embed.js" strategy="afterInteractive" />
+
+
       {/* Desktop AR Preview Section */}
       <section className="w-full max-w-6xl">
         <motion.h2
@@ -17,7 +49,7 @@ export default function ARPreviewPage() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="text-4xl md:text-5xl font-bold mb-6 text-center"
         >
-         
+          Check the Clothes in 3D!
         </motion.h2>
         <div className="flex flex-col md:flex-row gap-8 w-full">
           {/* Before Video Container */}
@@ -60,7 +92,7 @@ export default function ARPreviewPage() {
           </motion.div>
         </div>
       </section>
-      
+
       {/* Mobile Preview Section */}
       <section className="w-full max-w-4xl">
         <motion.h2
@@ -112,6 +144,8 @@ export default function ARPreviewPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Snapchat AR Embed Section */}
       
       <Link href="/" className="mt-8 text-blue-500 hover:underline">
         Back to Home
