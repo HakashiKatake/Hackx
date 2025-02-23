@@ -34,7 +34,7 @@ export default function Chatbot() {
     });
   };
 
-  // List of keywords that indicate a question is cloth/measurement related
+  // Keywords for cloth/measurement related queries
   const allowedKeywords = [
     "cloth",
     "clothing",
@@ -66,7 +66,11 @@ export default function Chatbot() {
         text: "I'm sorry, I can only answer questions related to clothing and measurements. Please ask me something related to that.",
         timestamp: new Date().toISOString(),
       };
-      setMessages(prev => [...prev, { sender: 'user', text: input, timestamp: currentTimestamp }, irrelevantMessage]);
+      setMessages(prev => [
+        ...prev,
+        { sender: 'user', text: input, timestamp: currentTimestamp },
+        irrelevantMessage,
+      ]);
       setInput('');
       setIsLoading(false);
       return;
@@ -132,7 +136,7 @@ export default function Chatbot() {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto bg-gray-50 dark:bg-gray-900 rounded-lg shadow-lg">
+    <div className="w-full max-w-3xl mx-auto bg-black/40 text-white backdrop-blur-sm rounded-lg shadow-lg border border-white/10">
       <div className="h-[500px] overflow-y-auto p-4 space-y-4">
         {messages.map((msg, index) => (
           <div
@@ -150,7 +154,9 @@ export default function Chatbot() {
               )}
             >
               <p className="text-sm whitespace-pre-wrap break-words">{msg.text}</p>
-              <span className="text-xs opacity-75 block mt-1">{formatTimestamp(msg.timestamp)}</span>
+              <span className="text-xs opacity-75 block mt-1">
+                {formatTimestamp(msg.timestamp)}
+              </span>
             </div>
           </div>
         ))}
@@ -173,17 +179,21 @@ export default function Chatbot() {
         )}
         <div ref={chatEndRef} />
       </div>
-      <div className="border-t p-4">
+      <div className="border-t border-white/20 p-4">
         <div className="flex space-x-4">
           <Textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Type your message..."
-            className="flex-1 resize-none"
+            className="flex-1 resize-none text-white bg-gray-800 border border-gray-600 focus:ring-2 focus:ring-blue-500"
             disabled={isLoading}
           />
-          <Button onClick={sendMessage} disabled={isLoading || input.trim() === ''}>
+          <Button
+            onClick={sendMessage}
+            disabled={isLoading || input.trim() === ''}
+            className="bg-blue-500 hover:bg-blue-600 text-white"
+          >
             Send
           </Button>
         </div>
