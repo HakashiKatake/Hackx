@@ -2,7 +2,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div>page</div>
+    <iframe className='w-full h-full' src="https://rohanvashisht-hackx.hf.space/?"></iframe>
   )
 }
 
